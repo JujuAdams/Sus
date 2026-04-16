@@ -5,10 +5,10 @@ function __SusClassAdapterSteam() : __SusClassAdapterFallback() constructor
         __SusTrace("Using Steam adapter");
     }
     
-    
-    
     var _avatar = steam_get_user_avatar(steam_get_user_steam_id(), SUS_STEAM_AVATAR_SIZE);
     __playerAvatar = (_avatar < 0)? SusBlankSprite : __SusSteamImageCreateSprite(_avatar);
+    
+    
     
     static __BeginStep = function()
     {
@@ -29,12 +29,7 @@ function __SusClassAdapterSteam() : __SusClassAdapterFallback() constructor
     		}
         }
         
-        --__waitingForGamepad;
-        
-        if ((__waitingForGamepad <= 0) && (not InputPlayerIsConnected()))
-        {
-            __GamepadDisconnected();
-        }
+        __BeginStepShared();
     }
     
     static __GetName = function()

@@ -6,75 +6,72 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
     }
     
     __findContollerID = -1;
-    __funcFindController = function(_user)
-    {
-        if ((__findContollerID < 0) && (_user != int64(0)) && (not xboxone_is_constrained()))
-        {
-            __findContollerID = xboxone_find_controller_for_user(_user);
-            __SusTrace($"__findContollerID = {__findContollerID}");
-        }
-    }
     
-    __funcEnsureAvatar = function()
+    __user           = xboxone_get_activating_user(); //This will often be 0 on Windows
+    __activatingUser = __user;
+    __userPrevious   = __user;
+    __userDefer      = undefined;
+    
+    __avatar = SusBlankSprite;
+    __UpdateAvatar();
+    
+    __SusTrace($"On boot: user = {__user}, gamepad = {InputPlayerGetDevice()}");
+    
+    
+    
+    static __UpdateAvatar = function()
     {
-        if (not XboxGetUserIsSignedIn())
+        if (not __SusXboxGetUserIsSignedInExt(__user))
         {
-            if (sprite_exists(__avatar))
+            if (sprite_exists(__avatar) && (__avatar != SusBlankSprite))
             {
                 sprite_delete(__avatar);
-                __avatar = -1;
+                __avatar = SusBlankSprite;
             }
         }
         else
         {
-            if (sprite_exists(__avatar))
+            if (sprite_exists(__avatar) && (__avatar != SusBlankSprite))
             {
                 sprite_delete(__avatar);
-                __avatar = -1;
+                __avatar = SusBlankSprite;
             }
             
             __avatar = xboxone_sprite_add_from_gamerpicture(__user, SUS_XBOX_AVATAR_SIZE, 0, 0);
         }
-    }
-    
-    __user    = xboxone_get_activating_user();
-    __gamepad = XboxGetGamepadExt(__user);
-    __avatar  = -1; __funcEnsureAvatar();
-    
-    __activatingUser = __user;
-    __seenGamepad = true;
-    
-    __userChanged  = false;
-    __userPrevious = __user;
-    __userDefer    = undefined;
-    
-    __gamepadChanged  = false;
-    __gamepadPrevious = __gamepad;
-    __gamepadDefer    = undefined;
-    
-    __SusTrace($"On boot: user = {__user}, gamepad = {__gamepad}");
-    
-    if (SUS_ON_XBOX_SERIES)
-    {
-        __XboxSetupUser(XboxGetUser());
         
-        //If we hotswap then communicate that change to the Xbox wrapper
-        InputSetHotswapCallback(function()
-        {
-            XboxSetGamepad(InputPlayerGetDevice());
-        });
+        return __avatar
     }
-    
-    
     
     static __GetName = function()
     {
-        return XboxGetUserGamertag();
+        return __SusXboxGetUserGamertagExt(__user);
     }
     
     static __GetAvatar = function()
     {
-        return __avatar ?? SusBlankSprite;
+        return __avatar;
+    }
+    
+    static __GetUserID = function()
+    {
+        return __user;
+    }
+    
+    static __GamepadDisconnected = function()
+    {
+        if (SUS_ON_XBOX_SERIES)
+        {
+            if ((__findContollerID < 0) && (__activatingUser != 0) && (not xboxone_is_constrained()) && (not xboxone_is_suspending()))
+            {
+                __findContollerID = xboxone_find_controller_for_user(__activatingUser);
+            }
+        }
+        
+        if (__SusCallbackCanPause())
+        {
+            __SusCallbackPause();
+        }
     }
     
     static __BeginStep = function()
@@ -90,75 +87,64 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
             __userDefer = undefined;
         }
         
-        if (__gamepadDefer != undefined)
+        if (__userPrevious !=__user)
         {
-            __gamepad = __gamepadDefer;
-            __seenGamepad = true;
-            __gamepadDefer = undefined;
+            __UpdateAvatar();
         }
         
-        if (SUS_ON_XBOX_SERIES)
+        __userPrevious = __user;
+        
+        if (SUS_USING_WINDOWS_GDK)
         {
-            if ((__user != int64(0)) && (xboxone_user_for_pad(__gamepad) != __user))
+            __BeginStepShared();
+        }
+        else if (SUS_ON_XBOX_SERIES)
+        {
+            if (not InputPlayerIsConnected()) //Gamepad is plain not connected
             {
-                if (__gamepad >= 0)
+                if (SUS_VERBOSE && (__findContollerID < 0))
                 {
-                    __gamepad = -1;
-                    __SusTrace($"Gamepad for {__user} changed to {__gamepad}");
+                    __SusTrace($"Gamepad {InputPlayerGetDevice()} isn't connected")
                 }
+                
+                __GamepadDisconnected();
+            }
+            else if (__user != __activatingUser) //Current user isn't the activating user
+            {
+                if (SUS_VERBOSE && (__findContollerID < 0))
+                {
+                    __SusTrace($"User {__user} isn't the activating user {__activatingUser}")
+                }
+                
+                __GamepadDisconnected();
+            }
+            else if ((__user != 0) && (xboxone_user_for_pad(InputPlayerGetDevice()) != __user)) //User for the pad doesn't match what we think the user should be
+            {
+                if (SUS_VERBOSE && (__findContollerID < 0))
+                {
+                    __SusTrace($"User {xboxone_user_for_pad(InputPlayerGetDevice())} for gamepad {InputPlayerGetDevice()} isn't the expected user {__user}")
+                }
+                
+                __GamepadDisconnected();
             }
             
-            if (__user != __activatingUser)
-            {
-                __funcFindController(__activatingUser);
-            }
-            else if (__gamepad < 0)
-            {
-                if (__seenGamepad)
-                {
-                    __funcFindController(__activatingUser);
-                }
-            }
-        }
-        
-        __userChanged    = (__userPrevious    !=__user);
-        __gamepadChanged = (__gamepadPrevious !=__gamepad);
-        
-        __userPrevious    = __user;
-        __gamepadPrevious = __gamepad;
-        
-        if (__userChanged)
-        {
-            __funcEnsureAvatar();
-            __XboxSetupUser(__user);
-        }
-        
-        if (SUS_ON_XBOX_SERIES)
-        {
-            //When we receive a "gamepad changed" signal from the internal wrapper code, pass that to Input
-            if (XboxGetGamepadChanged())
-            {
-                InputPlayerSetDevice(XboxGetGamepad());
-            }
-            
-            //Try to pause the game if the application is constrained
             if (xboxone_is_constrained())
             {
-                __SusCallbackPause();
+                if (__SusCallbackCanPause())
+                {
+                    __SusCallbackPause();
+                }
             }
             
             if (xboxone_is_suspending())
             {
-                var _genericSaveCount = instance_exists(obj_save_controller)? array_length(obj_save_controller.generic_save_array) : 0;
-                
-                __SusTrace($"Waiting for saves to finish... global.SETTINGS_SAVE_ID = {global.SETTINGS_SAVE_ID}, global.SAVE_ID = {global.SAVE_ID}, genericSaveCount = {_genericSaveCount}");
-                
-                //Finish the suspension once all the async save operations have completed
-                if ((global.SETTINGS_SAVE_ID < 0)
-                &&  (global.SAVE_ID < 0)
-                &&  (_genericSaveCount <= 0))
+                if (__SusCallbackCanSuspend())
                 {
-                    __SusTrace("All saves finished, calling `xboxone_suspend()`");
+                    if (SUS_VERBOSE)
+                    {
+                        __SusTrace("Calling `xboxone_suspend()`");
+                    }
+                    
                     xboxone_suspend();
                 }
             }
@@ -169,12 +155,12 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
     {
         __SusTrace($"system: {json_encode(async_load, true)}");
         
-        if (SUS_ON_WINDOWS)
+        if (SUS_USING_WINDOWS_GDK)
         {
             if (async_load[? "event_type"] == "user signed in")
             {
                 var _user = async_load[? "user"];
-                if (_user != int64(0))
+                if (_user != 0)
                 {
                     __userDefer = _user;
                 }
@@ -188,15 +174,15 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
                 var _gamepad = async_load[? "pad_index"];
                 
                 __SusTrace("xboxone_find_controller_for_user() returned");
-                __SusTrace($"Event user = {_user} \"{XboxGetUserGamertagExt(_user)}\", gamepad = {_gamepad}");
+                __SusTrace($"Event user = {_user} \"{__SusXboxGetUserGamertagExt(_user)}\", gamepad = {_gamepad}");
                 
-                if (_user != int64(0))
+                if (_user != 0)
                 {
                     __userDefer = _user;
                 
                     if (xboxone_user_for_pad(_gamepad) == _user)
                     {
-                        __gamepadDefer = _gamepad;
+                        InputPlayerSetDevice(_gamepad);
                     }
                     else
                     {
@@ -207,8 +193,9 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
                         }
                         else
                         {
-                            __gamepadDefer = xboxone_pad_for_user(_user, 0);
-                            __SusTrace($"Workaround set gamepad {__gamepadDefer}");
+                            var _gamepad = xboxone_pad_for_user(_user, 0);
+                            InputPlayerSetDevice(_gamepad);
+                            __SusTrace($"Workaround set gamepad {_gamepad}");
                         }
                     }
                 }
@@ -221,20 +208,20 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
                 var _user    = async_load[? "user"];
                 var _gamepad = async_load[? "pad_index"];
                 
-                __SusTrace($"User controller associated: user = {_user} \"{XboxGetUserGamertagExt(_user)}\", gamepad = {_gamepad} (existing user = {__user} \"{XboxGetUserGamertagExt(__user)}\", existing gamepad = {__gamepad})");
+                __SusTrace($"User controller associated: user = {_user} \"{__SusXboxGetUserGamertagExt(_user)}\", gamepad = {_gamepad} (existing user = {__user} \"{__SusXboxGetUserGamertagExt(__user)}\", existing gamepad = {InputPlayerGetDevice()})");
                 
-                if ((_gamepad == __gamepad) && (_user != __user))
+                if ((_gamepad == InputPlayerGetDevice()) && (_user != __user))
                 {
-                    __SusTrace($"User for current gamepad {__gamepad} changed");
+                    __SusTrace($"User for current gamepad {InputPlayerGetDevice()} changed");
                     
                     __userDefer = _user;
                 }
                 
-                if ((_gamepad != __gamepad) && (_user == __user))
+                if ((_gamepad != InputPlayerGetDevice()) && (_user == __user))
                 {
                     __SusTrace($"Gamepad for current user {__user} changed");
                     
-                    __gamepadDefer = _gamepad;
+                    InputPlayerSetDevice(_gamepad);
                 }
             } 
             
@@ -243,13 +230,12 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
                 var _user    = async_load[? "user"];
                 var _gamepad = async_load[? "pad_index"];
                 
-                __SusTrace($"User controller disassociated: user = {_user} \"{XboxGetUserGamertagExt(_user)}\", gamepad = {_gamepad} (existing user = {__user} \"{XboxGetUserGamertagExt(__user)}\", existing gamepad = {__gamepad})");
+                __SusTrace($"User controller disassociated: user = {_user} \"{__SusXboxGetUserGamertagExt(_user)}\", gamepad = {_gamepad} (existing user = {__user} \"{__SusXboxGetUserGamertagExt(__user)}\", existing gamepad = {InputPlayerGetDevice()})");
                 
-                if ((_gamepad == __gamepad) && (_user == __user))
+                if ((_gamepad == InputPlayerGetDevice()) && (_user == __user))
                 {
-                    __SusTrace($"User lost current gamepad {__gamepad}");
-                    
-                    __gamepadDefer = -1;
+                    __SusTrace($"User lost current gamepad {InputPlayerGetDevice()}");
+                    //InputPlayerSetDevice(INPUT_NO_DEVICE);
                 }
             }
         }

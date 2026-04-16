@@ -7,5 +7,15 @@ SusSetCanPauseCallback(function()
 
 SusSetPauseCallback(function()
 {
-    show_debug_message("Pause event");
+    //show_debug_message("Pause event");
+});
+
+SusSetCanSuspendCallback(function()
+{
+    return true;
+});
+
+SusSetSuspendingCallback(function()
+{
+    //show_debug_message("Suspending event");
 });

@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"SusSetPauseCallback",
+  "%Name":"SusSetSuspendingCallback",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"SusSetPauseCallback",
+  "name":"SusSetSuspendingCallback",
   "parent":{
     "name":"Callback Setup",
     "path":"folders/Sus/Functions/Callback Setup.yy",

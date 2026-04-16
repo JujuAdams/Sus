@@ -6,7 +6,6 @@ function __SusClassAdapterSwitch() : __SusClassAdapterFallback() constructor
     }
     
     __SusConfigSwitch();
-    __waitingForGamepad = 5;
     
     
     
@@ -25,16 +24,6 @@ function __SusClassAdapterSwitch() : __SusClassAdapterFallback() constructor
             }
             
             InputPlayerSetDevice(switch_controller_support_get_selected_id());
-        }
-    }
-    
-    static __BeginStep = function()
-    {
-        --__waitingForGamepad;
-        
-        if ((__waitingForGamepad <= 0) && (not InputPlayerIsConnected()))
-        {
-            __GamepadDisconnected();
         }
     }
 }

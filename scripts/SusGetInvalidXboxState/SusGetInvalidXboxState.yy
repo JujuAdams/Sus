@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"__SusCallbackCanPause",
+  "%Name":"SusGetInvalidXboxState",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"__SusCallbackCanPause",
+  "name":"SusGetInvalidXboxState",
   "parent":{
-    "name":"Callback",
-    "path":"folders/Sus/(System)/Callback.yy",
+    "name":"Functions",
+    "path":"folders/Sus/Functions.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

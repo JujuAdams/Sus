@@ -4,7 +4,7 @@ _string += $"name = \"{SusGetName()}\"\n";
 _string += $"user ID = {SusGetUserID()}\n";
 _string += $"\n";
 _string += $"gamepad = {InputPlayerGetDevice()}\n";
-_string += $"disconnected = {InputPlayerIsConnected()? "true" : "false"}\n";
+_string += $"connected = {InputPlayerIsConnected()? "true" : "false"}\n";
 _string += $"gamepad thumbstick = {InputX(INPUT_CLUSTER.NAVIGATION)}, {InputY(INPUT_CLUSTER.NAVIGATION)}\n";
 _string += $"\n";
 

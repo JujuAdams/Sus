@@ -2,6 +2,8 @@ build
 extensions
 options/extensions/Steamworks.json
 options/switch
+options/ps5
+options/xboxseriesxs
 
 # Windows
 
