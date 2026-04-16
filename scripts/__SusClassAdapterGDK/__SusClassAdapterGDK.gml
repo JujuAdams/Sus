@@ -15,7 +15,7 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
     __userPrevious   = __user;
     __userDefer      = undefined;
     
-    __avatar = SusBlankSprite;
+    __avatarSpriteArray = array_create(3, SusBlankSprite);
     __UpdateAvatar();
     
     if (SUS_VERBOSE)
@@ -27,26 +27,27 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
     
     static __UpdateAvatar = function()
     {
-        if (not __GetUserIsSignedIn(__user))
+        //Delete all existing sprites
+        var _i = 0;
+        repeat(3)
         {
-            if (sprite_exists(__avatar) && (__avatar != SusBlankSprite))
+            var _sprite = __avatarSpriteArray[_i];
+            
+            if (sprite_exists(_sprite) && (_sprite != SusBlankSprite))
             {
-                sprite_delete(__avatar);
-                __avatar = SusBlankSprite;
-            }
-        }
-        else
-        {
-            if (sprite_exists(__avatar) && (__avatar != SusBlankSprite))
-            {
-                sprite_delete(__avatar);
-                __avatar = SusBlankSprite;
+                sprite_delete(_sprite);
+                __avatarSpriteArray[@ _i] = SusBlankSprite;
             }
             
-            __avatar = xboxone_sprite_add_from_gamerpicture(__user, SUS_XBOX_AVATAR_SIZE, 0, 0);
+            ++_i;
         }
         
-        return __avatar
+        if (__GetUserIsSignedIn(__user))
+        {
+            __avatarSpriteArray[@ SUS_AVATAR_SMALL ] = xboxone_sprite_add_from_gamerpicture(__user, xboxone_gamerpic_small,  0, 0);
+            __avatarSpriteArray[@ SUS_AVATAR_MEDIUM] = xboxone_sprite_add_from_gamerpicture(__user, xboxone_gamerpic_medium, 0, 0);
+            __avatarSpriteArray[@ SUS_AVATAR_LARGE ] = xboxone_sprite_add_from_gamerpicture(__user, xboxone_gamerpic_large,  0, 0);
+        }
     }
     
     static __GetUserGamertag = function(_user)
@@ -77,9 +78,9 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
         return __GetUserGamertag(__user);
     }
     
-    static __GetAvatar = function()
+    static __GetAvatar = function(_size)
     {
-        return __avatar;
+        return __avatarSpriteArray[_size];
     }
     
     static __GetUserID = function()

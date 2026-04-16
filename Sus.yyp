@@ -141,7 +141,6 @@
     {"id":{"name":"__SusConstants","path":"scripts/__SusConstants/__SusConstants.yy",},},
     {"id":{"name":"__SusError","path":"scripts/__SusError/__SusError.yy",},},
     {"id":{"name":"__SusSoftError","path":"scripts/__SusSoftError/__SusSoftError.yy",},},
-    {"id":{"name":"__SusSteamImageCreateSprite","path":"scripts/__SusSteamImageCreateSprite/__SusSteamImageCreateSprite.yy",},},
     {"id":{"name":"__SusSystem","path":"scripts/__SusSystem/__SusSystem.yy",},},
     {"id":{"name":"__SusTrace","path":"scripts/__SusTrace/__SusTrace.yy",},},
     {"id":{"name":"__SusWarning","path":"scripts/__SusWarning/__SusWarning.yy",},},

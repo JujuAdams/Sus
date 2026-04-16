@@ -27,5 +27,11 @@ draw_text(room_width - 10, 10, _string);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
-var _sprite = SusGetAvatar();
+var _sprite = SusGetAvatar(SUS_AVATAR_LARGE);
+draw_sprite(_sprite, 0, room_width - 10 - sprite_get_width(_sprite), 64);
+
+var _sprite = SusGetAvatar(SUS_AVATAR_MEDIUM);
+draw_sprite(_sprite, 0, room_width - 10 - sprite_get_width(_sprite), 64);
+
+var _sprite = SusGetAvatar(SUS_AVATAR_SMALL);
 draw_sprite(_sprite, 0, room_width - 10 - sprite_get_width(_sprite), 64);

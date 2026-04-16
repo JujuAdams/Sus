@@ -18,3 +18,7 @@
 #macro SUS_USING_PLAY_SERVICES  (SUS_ON_ANDROID && extension_exists("GooglePlayServices"))
 #macro SUS_USING_GDK            (SUS_ON_XBOX_SERIES || SUS_USING_WINDOWS_GDK)
 #macro SUS_USING_WINDOWS_GDK    (SUS_ON_WINDOWS && extension_exists("GDKExtension"))
+
+#macro SUS_AVATAR_SMALL   0
+#macro SUS_AVATAR_MEDIUM  1
+#macro SUS_AVATAR_LARGE   2

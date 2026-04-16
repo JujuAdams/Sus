@@ -14,7 +14,7 @@ function __SusClassAdapterFallback() constructor
         return "";
     }
     
-    static __GetAvatar = function()
+    static __GetAvatar = function(_size)
     {
         return SusBlankSprite;
     }

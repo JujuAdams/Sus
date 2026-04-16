@@ -5,10 +5,52 @@ function __SusClassAdapterSteam() : __SusClassAdapterFallback() constructor
         __SusTrace("Using Steam adapter");
     }
     
-    var _avatar = steam_get_user_avatar(steam_get_user_steam_id(), SUS_STEAM_AVATAR_SIZE);
-    __playerAvatar = (_avatar < 0)? SusBlankSprite : __SusSteamImageCreateSprite(_avatar);
+    __avatarSpriteArray = array_create(3, SusBlankSprite);
+    
+    var _steamImage = steam_get_user_avatar(steam_get_user_steam_id(), steam_user_avatar_size_small);
+    __avatarSpriteArray[@ SUS_AVATAR_SMALL] = (_steamImage < 0)? SusBlankSprite : __CreateAvatarSprite(_steamImage);
+    
+    var _steamImage = steam_get_user_avatar(steam_get_user_steam_id(), steam_user_avatar_size_medium);
+    __avatarSpriteArray[@ SUS_AVATAR_MEDIUM] = (_steamImage < 0)? SusBlankSprite : __CreateAvatarSprite(_steamImage);
+    
+    var _steamImage = steam_get_user_avatar(steam_get_user_steam_id(), steam_user_avatar_size_large);
+    __avatarSpriteArray[@ SUS_AVATAR_LARGE] = (_steamImage < 0)? SusBlankSprite : __CreateAvatarSprite(_steamImage);
     
     
+    
+    static __CreateAvatarSprite = function(_steamImage)
+    {
+        var _sizeArray = steam_image_get_size(_steamImage);
+        
+        if (not is_array(_sizeArray))
+        {
+            return SusBlankSprite;
+        }
+        
+        var _width  = _sizeArray[0];
+        var _height = _sizeArray[1];
+        
+        show_debug_message($"{_width} x {_height}");
+        
+        var _bufferSize = 4*_width*_height;
+        var _buffer = buffer_create(_bufferSize, buffer_fixed, 1);
+        
+        if (steam_image_get_rgba(_steamImage, _buffer, _bufferSize)) 
+        {
+            var _surface = surface_create(_width, _height);
+            buffer_set_surface(_buffer, _surface, 0);
+            var _sprite = sprite_create_from_surface(_surface, 0, 0, _width, _height, false, false, 0, 0);
+            surface_free(_surface);
+        } 
+        else 
+        {
+            _sprite = SusBlankSprite;
+        }
+        
+        buffer_delete(_buffer);
+        
+        return _sprite;
+    }
     
     static __BeginStep = function()
     {
@@ -37,9 +79,9 @@ function __SusClassAdapterSteam() : __SusClassAdapterFallback() constructor
         return steam_get_persona_name();
     }
     
-    static __GetAvatar = function()
+    static __GetAvatar = function(_size)
     {
-        return __playerAvatar;
+        return __avatarSpriteArray[_size];
     }
     
     static __GetUserID = function()
