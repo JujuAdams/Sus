@@ -7,8 +7,6 @@ function __SusClassAdapterFallback() constructor
         __SusTrace("Using fallback adapter");
     }
     
-    __waitingForGamepad = 5;
-    
     
     
     static __GetName = function()
@@ -41,9 +39,7 @@ function __SusClassAdapterFallback() constructor
     
     static __BeginStepShared = function()
     {
-        --__waitingForGamepad;
-        
-        if ((__waitingForGamepad <= 0) && (not InputPlayerIsConnected()))
+        if (not InputPlayerIsConnected())
         {
             __GamepadDisconnected();
         }

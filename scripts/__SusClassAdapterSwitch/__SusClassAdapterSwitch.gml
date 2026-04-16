@@ -27,7 +27,6 @@ function __SusClassAdapterSwitch() : __SusClassAdapterFallback() constructor
         {
             __SusCallbackPause();
             
-            __waitingForGamepad = 30;
             switch_controller_support_show();
             
             if (SUS_VERBOSE)
