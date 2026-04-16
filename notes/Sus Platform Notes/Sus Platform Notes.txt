@@ -1,0 +1,53 @@
+Sus 0.0.0, 2026-04-16
+
+Whilst Sus has a consistent API cross-platform, it does have some per-platform wrinkles that need
+explaining.
+
+General points:
+  - Sus cannot be used for multiplayer games of any kind.
+  - Sus requires the use of Input (https://codeberg.org/offalynne/Input) for all platforms. Input
+    is a well-tested cross-platform input system that Sus relies upon to accurately track gamepads.
+
+Steam:
+  - Sus requiers use of YoYoGames' official Steamworks extension:
+      https://github.com/YoYoGames/GMEXT-Steamworks
+  - Sus calls `steam_update()` for you.
+  - Sus handles screenshots for you. This is not strictly related to user management but it's a
+    handy feature to have nonetheless. Please see documentation on `SUS_STEAM_SCREENSHOT_FILENAME`
+    for more information.
+
+Switch:
+  - Sus relies on Switch's native "console account selection at startup" feature. Please refer to
+    Nintendo's documentation for more information. Sus is not compatible with games that do not use
+    this feature.
+  - You will need to adjust `__SusConfigSwitch` to fit your game's needs. This script/function is
+    called when your game boots up and affects how the controller support applet looks and behaves.
+    Again, please refer to documentation for more information.
+  - Do not call `switch_controller_support_show()` yourself. Sus will open the CSA automatically
+    when it is needed. If you want to open the CSA manually, please call `SusSwitchShowCSA()`. Make
+    sure to read documentation for `SusSwitchShowCSA()` before using it.
+
+PlayStation 5:
+  - Sus relies on PlayStation's native `InitialUserAlwaysLoggedIn` feature. Please refer to Sony's
+    documentation for more information. Sus is not compatible with games that do not use this
+    feature.
+  - Sus requires the Input config macro `INPUT_PS5_SINGLE_USER` is set to `true`.
+  - PlayStation, unlike Switch and Xbox, does not have a native gamepad assignment feature. You
+    should instead show a modal prompt asking the player to press a button on another gamepad.
+
+Xbox Series X/S:
+  - Sus relies on Xbox's native `Simplified User Model` feature. Please refer to Microsoft's
+    documentation for more information. Sus is not compatible with games that do not use this
+    feature.
+  - Sus requires the Input config macro `INPUT_XBOX_SIMPLIFIED_USER_MODEL` is set to `true`.
+  - Sus will show a native Xbox modal when the player's gamepad is disconnected. You do not need
+    to call `xboxone_find_controller_for_user()` yourself.
+
+Windows GDK:
+  - Sus requiers use of YoYoGames' official Windows GDK extension:
+      https://github.com/YoYoGames/GMEXT-GDK
+  - Consider setting up a new configuration in the GameMaker IDE. You will likely be releasing on
+    Steam so you don't want to compile your game with GDK features for your Steam releases.
+    Creating a configuration in the IDE will allow you to swap between Windows releases.
+  - One particular step I often forget when setting up for Windows GDK is tick the "Copy exe to
+    output folder" box in a project's Windows game options.

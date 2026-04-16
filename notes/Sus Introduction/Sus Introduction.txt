@@ -11,18 +11,21 @@ will get your game through compliance checks with zero effort on your behalf.
 
 Despite Sus doing a good job of providing a consistent API, each platform inevitably works slightly
 differently. Please follow the instructions below per platform to ensure that Sus has been imported
-correctly into your game.
+correctly into your game. You should also read the `Sus Platform Notes` for further information
+pertinent to use of the library.
 
 Sus requires the use of Input (https://codeberg.org/offalynne/Input) for all platforms. Input is a
-well-tested cross-platform input system.
+well-tested cross-platform input system that Sus relies upon to accurately track gamepads.
 
 Steam:
   1. Import YoYoGames' official Steamworks extension:
        https://github.com/YoYoGames/GMEXT-Steamworks
      You only need the `Steamworks` extension asset and the `Steamworks_Definitions` scripts (you
-     don't need the example assets)
-  2. Set the `Application ID` for your game. You can find this in the Steam backend
-  3. If you have any, remove existing calls to `steam_update()` from your project
+     don't need the example assets).
+  2. Set the `Application ID` for your game in the Steamworks extension options. You can find the
+     application ID for your game in the Steam backend.
+  3. Remove existing calls to `steam_update()` and `steam_is_screenshot_requested()` from your
+     project. Sus handles these function calls for you.
   4. Import the Sus .yymps
   5. Test!
 
@@ -33,56 +36,52 @@ Steam:
 
 Switch:
   1. Make sure your game boots on devkit hardware before proceeding. You will need to refer to
-     documentation for this
-  2. Remove existing calls for the "controller support applet" (CSA) from your project
+     YoYoGames and Nintendo documentation for this.
+  2. Remove existing calls for the "controller support applet" (CSA) from your project.
   3. Set the following properties in your .nmeta:
        - "Console account selection at startup" to `Required`
        - "Console account selection at startup option" to `Not specified`
        - "Restriction on switching user accounts" to `Enable`
      Please refer to Nintendo's documentation for more information
-  4. Import the Sus .yymps
-  5. Open the `__SusConfigSwitch` script and customise it to your liking. Please refer to 
-     YoYoGames' documentation for more information
-  6. Do not call `switch_controller_support_show()` yourself. Please instead call the Sus function
-     `SusSwitchShowCSA()` to show the CSA
-  7. Call `SusSetPauseCallback()` on boot
-  8. Test!
+  4. Remove existing calls to `switch_controller_support_show()` (you will instead need to call
+     the Sus function `SusSwitchShowCSA()` to show the CSA manually).
+  5. Import the Sus .yymps
+  6. Open the `__SusConfigSwitch` script and customise it to your liking. Please refer to 
+     YoYoGames' documentation for more information.
+  7. Test!
 
 PlayStation 5:
   1. Make sure your game boots on devkit hardware before proceeding. You will need to refer to
-     documentation for this
-  2. Remove existing calls to `psn_init()` and `psn_tick()` from your project. Sus will call these
-     functions for you
+     YoYoGames and Sony documentation for this.
+  2. Remove existing calls to `psn_tick()` from your project. Sus will call this function for you.
   3. Enable `InitialUserAlwaysLoggedIn` in your params.json. Please refer to Sony's documentation
-     for further information on how to do this
+     for further information on how to do this.
   4. Import the Sus .yymps
-  5. Set the Input config macro `INPUT_PS5_SINGLE_USER` to `true`
-  6. Call `SusSetPauseCallback()` on boot
-  7. Test!
+  5. Ensure the Input config macro `INPUT_PS5_SINGLE_USER` is set to `true`.
+  6. Test!
 
 Xbox Series X/S:
   1. Make sure your game boots on devkit hardware before proceeding. You will need to refer to
-     documentation for this
-  2. Enable `Simplified User Model` in your Xbox One & Series X/S game options in the GameMaker IDE
-  3. Import the Sus .yymps
-  4. Call `SusSetPauseCallback()` on boot
-  5. Set the Input config macro `INPUT_XBOX_SIMPLIFIED_USER_MODEL` to `true`
+     YoYoGames and Microsoft documentation for this.
+  2. Remove existing calls to `xboxone_find_controller_for_user()` from your project. Sus will call
+     this function for you.
+  3. Enable `Simplified User Model` in your Xbox One & Series X/S game options in the GameMaker IDE
+  4. Import the Sus .yymps
+  5. Ensure the Input config macro `INPUT_XBOX_SIMPLIFIED_USER_MODEL` is set to `true`
   6. Test!
 
 Windows GDK (Xbox on Windows):
   1. Import YoYoGames' official Windows GDK extension:
        https://github.com/YoYoGames/GMEXT-GDK
-     You only need the `GDKExtension` extension asset
-  2. Consider setting up a new configuration in the GameMaker IDE. You will likely be releasing on
-     Steam so you don't want to compile your game with GDK features for your Steam releases.
-     Creating a configuration in the IDE will allow you to swap between Windows releases
-  3. Enable `Auto Initialise` in the GDK extension's options
-  4. Make sure your game boots using the GDK extension before proceeding. You will need to refer to
-     documentation for this
-  5. If you have any, remove existing calls to `gdk_init()`, `gdk_update()`, `gdk_quit()` from your
-     project. Sus will call these functions for you
-  6. Import the Sus .yymps
-  7. Test!
+     You only need the `GDKExtension` extension asset.
+  2. Enable `Auto Initialise` in the GDK extension's options. This removes the need to call for you
+     to call `gdk_init()` yourself.
+  3. Make sure your game boots using the GDK extension before proceeding. You will need to refer to
+     YoYoGames and Microsoft documentation for this.
+  4. Remove existing calls to `gdk_update()` and `gdk_quit()` from your project. Sus will call
+     these functions for you.
+  5. Import the Sus .yymps
+  6. Test!
 
 Other platforms:
   Sus does not have support for these platforms yet.

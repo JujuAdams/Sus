@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__SusConfigSwitch",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__SusConfigSwitch",
+  "parent":{
+    "name":"Sus",
+    "path":"folders/Sus.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

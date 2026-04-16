@@ -1,7 +1,7 @@
 {
   "$GMNotes":"v1",
-  "%Name":"Sus Instructions",
-  "name":"Sus Instructions",
+  "%Name":"Sus Introduction",
+  "name":"Sus Introduction",
   "parent":{
     "name":"Sus",
     "path":"folders/Sus.yy",
