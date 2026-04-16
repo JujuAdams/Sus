@@ -1,15 +1,13 @@
 function __SusClassAdapterFallback() constructor
 {
+    static _system = __SusSystem();
+    
     if (SUS_VERBOSE)
     {
         __SusTrace("Using fallback adapter");
     }
     
-    static _system = __SusSystem();
     
-    static __BeginStep = function() {}
-    
-    static __SystemAsync = function() {}
     
     static __GetName = function()
     {
@@ -28,7 +26,21 @@ function __SusClassAdapterFallback() constructor
     
     static __GamepadDisconnected = function()
     {
-        __SusCallbackGamepadDisconnected();
-        __SusCallbackPause();
+        if (__SusCallbackCanPause())
+        {
+            __SusCallbackPause();
+        }
     }
+    
+    static __BeginStep = function()
+    {
+        --__waitingForGamepad;
+        
+        if ((__waitingForGamepad <= 0) && (not InputPlayerIsConnected()))
+        {
+            __GamepadDisconnected();
+        }
+    }
+    
+    static __SystemAsync = function() {}
 }

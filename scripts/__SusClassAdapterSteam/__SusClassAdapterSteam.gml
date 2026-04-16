@@ -28,6 +28,13 @@ function __SusClassAdapterSteam() : __SusClassAdapterFallback() constructor
     			steam_send_screenshot(_filename, window_get_width(), window_get_height());
     		}
         }
+        
+        --__waitingForGamepad;
+        
+        if ((__waitingForGamepad <= 0) && (not InputPlayerIsConnected()))
+        {
+            __GamepadDisconnected();
+        }
     }
     
     static __GetName = function()

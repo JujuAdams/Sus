@@ -5,6 +5,8 @@ function __SusClassAdapterPS5() : __SusClassAdapterFallback() constructor
         __SusTrace("Using PlayStation 5 adapter");
     }
     
+    __waitingForGamepad = 5;
+    
     __userID = psn_default_user();
     
     
@@ -22,5 +24,12 @@ function __SusClassAdapterPS5() : __SusClassAdapterFallback() constructor
     static __BeginStep = function()
     {
         psn_tick();
+        
+        --__waitingForGamepad;
+        
+        if ((__waitingForGamepad <= 0) && (not InputPlayerIsConnected()))
+        {
+            __GamepadDisconnected();
+        }
     }
 }

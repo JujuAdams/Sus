@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"__SusClassAdapterNull",
+  "%Name":"__SusClassAdapterFallback",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"__SusClassAdapterNull",
+  "name":"__SusClassAdapterFallback",
   "parent":{
     "name":"Adapters",
     "path":"folders/Sus/(System)/Adapters.yy",

@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"__SusCallbackCanPause",
   "parent":{
-    "name":"Callbacks",
-    "path":"folders/Sus/(System)/Callbacks.yy",
+    "name":"(System)",
+    "path":"folders/Sus/(System).yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

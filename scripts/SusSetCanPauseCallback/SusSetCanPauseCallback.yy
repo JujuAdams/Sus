@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"SusSetCanPauseCallback",
   "parent":{
-    "name":"Callback Setup",
-    "path":"folders/Sus/Functions/Callback Setup.yy",
+    "name":"Functions",
+    "path":"folders/Sus/Functions.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

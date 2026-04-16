@@ -12,8 +12,6 @@ function __SusClassAdapterSwitch() : __SusClassAdapterFallback() constructor
     
     static __GamepadDisconnected = function()
     {
-        __SusCallbackGamepadDisconnected();
-        
         if (__SusCallbackCanPause())
         {
             __SusCallbackPause();
