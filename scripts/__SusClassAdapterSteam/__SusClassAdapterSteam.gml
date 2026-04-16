@@ -56,12 +56,12 @@ function __SusClassAdapterSteam() : __SusClassAdapterFallback() constructor
     {
         steam_update();
         
-        if (SUS_STEAM_SCREENSHOT_FILENAME != undefined)
+        if (is_string(SUS_STEAM_SCREENSHOT_FILENAME))
         {
     		if (steam_is_screenshot_requested())
     		{
                 var _time = date_current_datetime();
-                var _safeDatetime = $"{date_get_year(_time)}-{date_get_month(_time)}-{date_get_day(_time)}";
+                var _safeDatetime = $"{date_get_year(_time)}-{date_get_month(_time)}-{date_get_day(_time)}__{date_get_hour(_time)}-{date_get_minute(_time)}-{date_get_second(_time)}";
                 
                 var _filename = string_replace(SUS_STEAM_SCREENSHOT_FILENAME, "#", _safeDatetime);
                 _filename = string_replace_all(_filename, "#", ""); //Clean up other hashes

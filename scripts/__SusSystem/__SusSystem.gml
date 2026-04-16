@@ -11,7 +11,7 @@ function __SusSystem()
     
     if (SUS_RUNNING_FROM_IDE)
     {
-        global.__susSystem = _system;
+        global.__SusSystem = _system;
     }
     
     with(_system)
@@ -19,9 +19,9 @@ function __SusSystem()
         __SusTrace($"Welcome to Sus by Juju Adams! This is version {SUS_VERSION}, {SUS_DATE}");
         
         __gamepadDisconnectedCallback = undefined;
-        __canInterruptGameCallback   = undefined;
-        __xboxSuspendCallback = undefined;
-        __canXboxSuspendCallback = undefined;
+        __canInterruptGameCallback    = undefined;
+        __xboxSuspendCallback         = undefined;
+        __canXboxSuspendCallback      = undefined;
         
         if (SUS_USING_STEAMWORKS)
         {
