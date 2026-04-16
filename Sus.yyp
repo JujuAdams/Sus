@@ -127,7 +127,7 @@
     {"id":{"name":"__InputSystemCallbackArray","path":"scripts/__InputSystemCallbackArray/__InputSystemCallbackArray.yy",},},
     {"id":{"name":"__InputSystemPlayerArray","path":"scripts/__InputSystemPlayerArray/__InputSystemPlayerArray.yy",},},
     {"id":{"name":"__InputTrace","path":"scripts/__InputTrace/__InputTrace.yy",},},
-    {"id":{"name":"__SusCallbackCanPause","path":"scripts/__SusCallbackCanPause/__SusCallbackCanPause.yy",},},
+    {"id":{"name":"__SusCallbackCanInterruptGame","path":"scripts/__SusCallbackCanInterruptGame/__SusCallbackCanInterruptGame.yy",},},
     {"id":{"name":"__SusCallbackCanXboxSuspend","path":"scripts/__SusCallbackCanXboxSuspend/__SusCallbackCanXboxSuspend.yy",},},
     {"id":{"name":"__SusCallbackGamepadDisconnected","path":"scripts/__SusCallbackGamepadDisconnected/__SusCallbackGamepadDisconnected.yy",},},
     {"id":{"name":"__SusCallbackXboxSuspending","path":"scripts/__SusCallbackXboxSuspending/__SusCallbackXboxSuspending.yy",},},

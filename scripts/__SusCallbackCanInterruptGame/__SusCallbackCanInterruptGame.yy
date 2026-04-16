@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"__SusCallbackCanPause",
+  "%Name":"__SusCallbackCanInterruptGame",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"__SusCallbackCanPause",
+  "name":"__SusCallbackCanInterruptGame",
   "parent":{
     "name":"Callback",
     "path":"folders/Sus/(System)/Callback.yy",

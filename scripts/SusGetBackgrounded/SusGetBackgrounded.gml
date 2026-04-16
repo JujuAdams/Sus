@@ -6,7 +6,7 @@
 /// application as being backgrounded. Exactly when that is depends on the platform, please
 /// continue reading for more information.
 /// 
-/// Windows (Steam & GDK), MacOS, Linux:
+/// Windows (Steam & GDK):
 ///   Returns `true` when the application is minimized.
 /// 
 /// Switch:
