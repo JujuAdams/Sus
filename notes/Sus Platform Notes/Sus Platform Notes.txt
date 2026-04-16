@@ -7,6 +7,11 @@ General points:
   - Sus cannot be used for multiplayer games of any kind.
   - Sus requires the use of Input (https://codeberg.org/offalynne/Input) for all platforms. Input
     is a well-tested cross-platform input system that Sus relies upon to accurately track gamepads.
+  - Regardless of what platform you are releasing on, you should set a callback with
+    `SusSetGamepadDisconnectedCallback()` to both pause the game and show a user interface element
+    to communicate the loss of their gamepad to the player.
+  - You will likely want to check against `SusGetBackgrounded()` to pause the game when the OS
+    backgrounds the game or draws OS user interface over the application.
 
 Steam:
   - Sus requiers use of YoYoGames' official Steamworks extension:
@@ -26,8 +31,11 @@ Switch:
   - Do not call `switch_controller_support_show()` yourself. Sus will open the CSA automatically
     when it is needed. If you want to open the CSA manually, please call `SusSwitchShowCSA()`. Make
     sure to read documentation for `SusSwitchShowCSA()` before using it.
+  - You must set a callback with `SusSetCanInterruptGameCallback()` for Sus to not show the CSA at
+    inappropriate times, such as loading screens or cutscenes.
 
 PlayStation 5:
+  - SUs calls `psn_tick()` for you.
   - Sus relies on PlayStation's native `InitialUserAlwaysLoggedIn` feature. Please refer to Sony's
     documentation for more information. Sus is not compatible with games that do not use this
     feature.
@@ -42,12 +50,28 @@ Xbox Series X/S:
   - Sus requires the Input config macro `INPUT_XBOX_SIMPLIFIED_USER_MODEL` is set to `true`.
   - Sus will show a native Xbox modal when the player's gamepad is disconnected. You do not need
     to call `xboxone_find_controller_for_user()` yourself.
+  - You must set a callback with `SusSetCanInterruptGameCallback()` for Sus to not show the native
+    "find controller" OS modal at inappropriate times, such as loading screens or cutscenes.
+  - You must set callbacks with `SusSetXboxSuspendingCallback()` and `...CanXboxSuspendCallback()`
+    for Sus to operate properly.
+  - Occasionally, the OS will find itself in an invalid state when the game boots up due to the
+    current user not having a gamepad connected. You should check `SusGetInvalidXboxState()` on a
+    welcome screen or a "Press Start" screen to prevent the game from progressing. This should be
+    before the player enters into the main menu and certainly before the player enters into
+    gameplay. Please refer to Microsoft documentation for further information.
 
 Windows GDK:
   - Sus requiers use of YoYoGames' official Windows GDK extension:
       https://github.com/YoYoGames/GMEXT-GDK
+  - Sus calls `gdk_update()` and `gdk_quit()` for you. If you tick the "Auto Initialise" box in
+    the GDK extension options then you don't need to call `gdk_init()`.
   - Consider setting up a new configuration in the GameMaker IDE. You will likely be releasing on
     Steam so you don't want to compile your game with GDK features for your Steam releases.
     Creating a configuration in the IDE will allow you to swap between Windows releases.
   - One particular step I often forget when setting up for Windows GDK is tick the "Copy exe to
     output folder" box in a project's Windows game options.
+  - Occasionally, Xbox GDK will find itself in an invalid state when the game boots up due to an
+    Xbox user not being signed in. You should check `SusGetInvalidXboxState()` on a welcome screen
+    or a "Press Start" screen to prevent the game from progressing. This should be before the
+    player enters into the main menu and certainly before the player enters into gameplay. Please
+    refer to Microsoft documentation for further information.

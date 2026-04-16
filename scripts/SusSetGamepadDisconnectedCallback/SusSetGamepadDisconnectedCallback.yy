@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"SusSetPauseCallback",
+  "%Name":"SusSetGamepadDisconnectedCallback",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"SusSetPauseCallback",
+  "name":"SusSetGamepadDisconnectedCallback",
   "parent":{
     "name":"Callback Setup",
     "path":"folders/Sus/Functions/Callback Setup.yy",

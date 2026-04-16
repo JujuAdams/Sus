@@ -1,10 +1,10 @@
-function __SusCallbackCanPause()
+function __SusCallbackCanInterruptGame()
 {
     static _system = __SusSystem();
     
-    if (is_callable(_system.__canPauseCallback))
+    if (is_callable(_system.__canInterruptGameCallback))
     {
-        return (_system.__canPauseCallback() == true);
+        return (_system.__canInterruptGameCallback() == true);
     }
     else
     {

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__SusCallbackGamepadDisconnected",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__SusCallbackGamepadDisconnected",
+  "parent":{
+    "name":"Callback",
+    "path":"folders/Sus/(System)/Callback.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -26,10 +26,7 @@ function __SusClassAdapterFallback() constructor
     
     static __GamepadDisconnected = function()
     {
-        if (__SusCallbackCanPause())
-        {
-            __SusCallbackPause();
-        }
+        __SusCallbackGamepadDisconnected();
     }
     
     static __BeginStep = function()
@@ -42,14 +39,6 @@ function __SusClassAdapterFallback() constructor
         if (not InputPlayerIsConnected())
         {
             __GamepadDisconnected();
-        }
-        
-        if (os_is_paused())
-        {
-            if (__SusCallbackCanPause())
-            {
-                __SusCallbackPause();
-            }
         }
     }
     

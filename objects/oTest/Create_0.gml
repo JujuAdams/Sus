@@ -1,13 +1,13 @@
 draw_set_font(fntConsolas);
 
-SusSetCanPauseCallback(function()
+SusSetCanInterruptGameCallback(function()
 {
     return true;
 });
 
-SusSetPauseCallback(function()
+SusSetGamepadDisconnectedCallback(function()
 {
-    //show_debug_message("Pause event");
+    //show_debug_message("Gamepad disconnected event");
 });
 
 SusSetCanXboxSuspendCallback(function()

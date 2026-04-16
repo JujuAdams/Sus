@@ -23,9 +23,9 @@ function __SusClassAdapterSwitch() : __SusClassAdapterFallback() constructor
     
     static __GamepadDisconnected = function()
     {
-        if (__SusCallbackCanPause())
+        if (__SusCallbackCanInterruptGame())
         {
-            __SusCallbackPause();
+            __SusCallbackGamepadDisconnected();
             
             switch_controller_support_show();
             

@@ -18,8 +18,8 @@ function __SusSystem()
     {
         __SusTrace($"Welcome to Sus by Juju Adams! This is version {SUS_VERSION}, {SUS_DATE}");
         
-        __pauseCallback      = undefined;
-        __canPauseCallback   = undefined;
+        __gamepadDisconnectedCallback = undefined;
+        __canInterruptGameCallback   = undefined;
         __xboxSuspendCallback = undefined;
         __canXboxSuspendCallback = undefined;
         

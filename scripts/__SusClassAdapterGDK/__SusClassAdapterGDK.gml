@@ -74,9 +74,9 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
             }
         }
         
-        if (__SusCallbackCanPause())
+        if (__SusCallbackCanInterruptGame())
         {
-            __SusCallbackPause();
+            __SusCallbackGamepadDisconnected();
         }
     }
     
@@ -137,15 +137,16 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
                 __GamepadDisconnected();
             }
             
-            if (xboxone_is_constrained())
+            if (not xboxone_is_suspending())
             {
-                if (__SusCallbackCanPause())
+                if (__suspending && SUS_VERBOSE)
                 {
-                    __SusCallbackPause();
+                    __SusTrace("Application stopped suspending");
                 }
+                
+                __suspending = false;
             }
-            
-            if (xboxone_is_suspending())
+            else
             {
                 if (not __suspending)
                 {
@@ -169,15 +170,6 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
                     
                     xboxone_suspend();
                 }
-            }
-            else
-            {
-                if (SUS_VERBOSE)
-                {
-                    __SusTrace("Application stopped suspending");
-                }
-                
-                __suspending = false;
             }
         }
     }
