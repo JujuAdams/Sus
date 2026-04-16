@@ -6,41 +6,37 @@ function __SusClassAdapterSwitch() : __SusClassAdapterFallback() constructor
     }
     
     __SusConfigSwitch();
-    __waitingForGamepad = 0;
+    __waitingForGamepad = 5;
     
     
     
     static __GamepadDisconnected = function()
     {
         __SusCallbackGamepadDisconnected();
-        __SusCallbackPause();
         
-        __waitingForGamepad = 20;
-        switch_controller_support_show();
+        if (__SusCallbackCanPause())
+        {
+            __SusCallbackPause();
+            
+            __waitingForGamepad = 30;
+            switch_controller_support_show();
+            
+            if (SUS_VERBOSE)
+            {
+                __SusTrace($"CSA selected gamepad {switch_controller_support_get_selected_id()}");
+            }
+            
+            InputPlayerSetDevice(switch_controller_support_get_selected_id());
+        }
     }
     
     static __BeginStep = function()
     {
         --__waitingForGamepad;
-    }
-    
-    static __SystemAsync = function()
-    {
-        var _type  = async_load[? "event_type"];
-        var _index = async_load[? "pad_index" ];
         
-        if (_type == "gamepad discovered")
+        if ((__waitingForGamepad <= 0) && (not InputPlayerIsConnected()))
         {
-            //If a gamepad was discovered during the CSA then that's our new gamepad!
-            if ((__waitingForGamepad > 0) && __SusGetGamepadDisconnected())
-            {
-                __waitingForGamepad = 0;
-                
-                _system.__gamepad = _index;
-                _system.__disconnectedTime = 0;
-                
-                __SusCallbackGamepadConnected(_index);
-            }
+            __GamepadDisconnected();
         }
     }
 }

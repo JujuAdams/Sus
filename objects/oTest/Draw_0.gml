@@ -3,9 +3,9 @@ _string += $"\n";
 _string += $"name = \"{SusGetName()}\"\n";
 _string += $"user ID = {SusGetUserID()}\n";
 _string += $"\n";
-_string += $"gamepad = {SusGetGamepad()}\n";
-_string += $"disconnected = {SusGetGamepadDisconnected()? "true" : "false"}\n";
-_string += $"gamepad thumbstick = {gamepad_axis_value(SusGetGamepad(), gp_axislh)}, {gamepad_axis_value(SusGetGamepad(), gp_axislv)}\n";
+_string += $"gamepad = {InputPlayerGetDevice()}\n";
+_string += $"disconnected = {InputPlayerIsConnected()? "true" : "false"}\n";
+_string += $"gamepad thumbstick = {InputX(INPUT_CLUSTER.NAVIGATION)}, {InputY(INPUT_CLUSTER.NAVIGATION)}\n";
 _string += $"\n";
 
 var _i = 0;

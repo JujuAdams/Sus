@@ -13,6 +13,9 @@ Despite Sus doing a good job of providing a consistent API, each platform inevit
 differently. Please follow the instructions below per platform to ensure that Sus has been imported
 correctly into your game.
 
+Sus requires the use of Input (https://codeberg.org/offalynne/Input) for all platforms. Input is a
+well-tested cross-platform input system.
+
 Steam:
   1. Import YoYoGames' official Steamworks extension:
        https://github.com/YoYoGames/GMEXT-Steamworks
@@ -49,7 +52,7 @@ PlayStation 5:
   2. Enable `InitialUserAlwaysLoggedIn` in your params.json. Please refer to Sony's documentation
      for further information on how to do this
   3. Import the Sus .yymps
-  4. If you are using Input (https://codeberg.org/offalynne/Input), set `INPUT_PS5_SINGLE_USER` to `true`
+  4. Set the Input config macro `INPUT_PS5_SINGLE_USER` to `true`
   5. Call `SusSetPauseCallback()` on boot
   6. Test!
 
@@ -57,8 +60,7 @@ Xbox Series X/S:
   1. Enable `Simplified User Model` in your Xbox One & Series X/S game options in the GameMaker IDE
   2. Import the Sus .yymps
   3. Call `SusSetPauseCallback()` on boot
-  4. If you are using Input (https://codeberg.org/offalynne/Input), set `INPUT_XBOX_SIMPLIFIED_USER_MODEL`
-     to `true`
+  4. Set the Input config macro `INPUT_XBOX_SIMPLIFIED_USER_MODEL` to `true`
   4. Test!
 
 Windows GDK (Xbox on Windows):

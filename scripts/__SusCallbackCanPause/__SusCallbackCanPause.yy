@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"SusSetGamepad",
+  "%Name":"__SusCallbackCanPause",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"SusSetGamepad",
+  "name":"__SusCallbackCanPause",
   "parent":{
-    "name":"Gamepads",
-    "path":"folders/Sus/Functions/Gamepads.yy",
+    "name":"Callbacks",
+    "path":"folders/Sus/(System)/Callbacks.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

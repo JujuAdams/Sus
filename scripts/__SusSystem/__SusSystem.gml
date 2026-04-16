@@ -19,11 +19,9 @@ function __SusSystem()
         __SusTrace($"Welcome to Sus by Juju Adams! This is version {SUS_VERSION}, {SUS_DATE}");
         
         __pauseCallback               = undefined;
+        __canPauseCallback            = undefined;
         __gamepadConnectedCallback    = undefined;
         __gamepadDisconnectedCallback = undefined;
-        
-        __gamepad = -1;
-        __disconnectedTime = 0;
         
         if (SUS_USING_STEAMWORKS)
         {

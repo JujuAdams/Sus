@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"SusSwitchShowCSA",
   "parent":{
-    "name":"Gamepads",
-    "path":"folders/Sus/Functions/Gamepads.yy",
+    "name":"Functions",
+    "path":"folders/Sus/Functions.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
