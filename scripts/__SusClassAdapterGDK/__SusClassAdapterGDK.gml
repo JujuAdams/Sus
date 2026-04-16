@@ -27,7 +27,7 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
     
     static __UpdateAvatar = function()
     {
-        if (not __SusXboxGetUserIsSignedInExt(__user))
+        if (not __GetUserIsSignedIn(__user))
         {
             if (sprite_exists(__avatar) && (__avatar != SusBlankSprite))
             {
@@ -49,9 +49,32 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
         return __avatar
     }
     
+    static __GetUserGamertag = function(_user)
+    {
+        return __GetUserIsSignedIn(_user)? xboxone_modern_gamertag_for_user(_user) : "";
+    }
+    
+    static __GetUserIsSignedIn = function(_user)
+    {
+        var _i = 0;
+        repeat(xboxone_get_user_count())
+        {
+            if (_user == xboxone_get_user(_i))
+            {
+                return true;
+            }
+            
+            ++_i;
+        }
+        
+        return false;
+    }
+    
+    
+    
     static __GetName = function()
     {
-        return __SusXboxGetUserGamertagExt(__user);
+        return __GetUserGamertag(__user);
     }
     
     static __GetAvatar = function()
@@ -195,7 +218,7 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
                 var _gamepad = async_load[? "pad_index"];
                 
                 __SusTrace("xboxone_find_controller_for_user() returned");
-                __SusTrace($"Event user = {_user} \"{__SusXboxGetUserGamertagExt(_user)}\", gamepad = {_gamepad}");
+                __SusTrace($"Event user = {_user} \"{__GetUserGamertag(_user)}\", gamepad = {_gamepad}");
                 
                 if (_user != 0)
                 {
@@ -229,7 +252,7 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
                 var _user    = async_load[? "user"];
                 var _gamepad = async_load[? "pad_index"];
                 
-                __SusTrace($"User controller associated: user = {_user} \"{__SusXboxGetUserGamertagExt(_user)}\", gamepad = {_gamepad} (existing user = {__user} \"{__SusXboxGetUserGamertagExt(__user)}\", existing gamepad = {InputPlayerGetDevice()})");
+                __SusTrace($"User controller associated: user = {_user} \"{__GetUserGamertag(_user)}\", gamepad = {_gamepad} (existing user = {__user} \"{__GetUserGamertag(__user)}\", existing gamepad = {InputPlayerGetDevice()})");
                 
                 if ((_gamepad == InputPlayerGetDevice()) && (_user != __user))
                 {
@@ -251,7 +274,7 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
                 var _user    = async_load[? "user"];
                 var _gamepad = async_load[? "pad_index"];
                 
-                __SusTrace($"User controller disassociated: user = {_user} \"{__SusXboxGetUserGamertagExt(_user)}\", gamepad = {_gamepad} (existing user = {__user} \"{__SusXboxGetUserGamertagExt(__user)}\", existing gamepad = {InputPlayerGetDevice()})");
+                __SusTrace($"User controller disassociated: user = {_user} \"{__GetUserGamertag(_user)}\", gamepad = {_gamepad} (existing user = {__user} \"{__GetUserGamertag(__user)}\", existing gamepad = {InputPlayerGetDevice()})");
                 
                 if ((_gamepad == InputPlayerGetDevice()) && (_user == __user))
                 {
