@@ -5,6 +5,9 @@
     "739418cd-12a6-4f26-b5c6-8721e5ec5842": {
       "Default": {
         "value": "True"
+      },
+      "WindowsGDK": {
+        "value": "True"
       }
     },
     "51438ddb-3674-4dbd-8090-731ee5fbf291": null,

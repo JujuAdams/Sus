@@ -96,7 +96,10 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
         
         if (SUS_USING_WINDOWS_GDK)
         {
-            __BeginStepShared();
+            if (not InputPlayerIsConnected())
+            {
+                __GamepadDisconnected();
+            }
         }
         else if (SUS_ON_XBOX_SERIES)
         {

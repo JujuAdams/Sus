@@ -32,36 +32,42 @@ Steam:
       https://store.steampowered.com/app/378090/Rebel_Wings/
 
 Switch:
-  1. Remove existing calls for the "controller support applet" (CSA) from your project
-  2. Set the following properties in your .nmeta:
+  1. Make sure your game boots on devkit hardware before proceeding. You will need to refer to
+     documentation for this
+  2. Remove existing calls for the "controller support applet" (CSA) from your project
+  3. Set the following properties in your .nmeta:
        - "Console account selection at startup" to `Required`
        - "Console account selection at startup option" to `Not specified`
        - "Restriction on switching user accounts" to `Enable`
      Please refer to Nintendo's documentation for more information
-  3. Import the Sus .yymps
-  4. Open the `__SusConfigSwitch` script and customise it to your liking. Please refer to 
+  4. Import the Sus .yymps
+  5. Open the `__SusConfigSwitch` script and customise it to your liking. Please refer to 
      YoYoGames' documentation for more information
-  5. Do not call `switch_controller_support_show()` yourself. Please instead call the Sus function
+  6. Do not call `switch_controller_support_show()` yourself. Please instead call the Sus function
      `SusSwitchShowCSA()` to show the CSA
-  5. Call `SusSetPauseCallback()` on boot
-  6. Test!
+  7. Call `SusSetPauseCallback()` on boot
+  8. Test!
 
 PlayStation 5:
-  1. Remove existing calls to `psn_init()` and `psn_tick()` from your project. Sus will call these
+  1. Make sure your game boots on devkit hardware before proceeding. You will need to refer to
+     documentation for this
+  2. Remove existing calls to `psn_init()` and `psn_tick()` from your project. Sus will call these
      functions for you
-  2. Enable `InitialUserAlwaysLoggedIn` in your params.json. Please refer to Sony's documentation
+  3. Enable `InitialUserAlwaysLoggedIn` in your params.json. Please refer to Sony's documentation
      for further information on how to do this
-  3. Import the Sus .yymps
-  4. Set the Input config macro `INPUT_PS5_SINGLE_USER` to `true`
-  5. Call `SusSetPauseCallback()` on boot
-  6. Test!
+  4. Import the Sus .yymps
+  5. Set the Input config macro `INPUT_PS5_SINGLE_USER` to `true`
+  6. Call `SusSetPauseCallback()` on boot
+  7. Test!
 
 Xbox Series X/S:
-  1. Enable `Simplified User Model` in your Xbox One & Series X/S game options in the GameMaker IDE
-  2. Import the Sus .yymps
-  3. Call `SusSetPauseCallback()` on boot
-  4. Set the Input config macro `INPUT_XBOX_SIMPLIFIED_USER_MODEL` to `true`
-  4. Test!
+  1. Make sure your game boots on devkit hardware before proceeding. You will need to refer to
+     documentation for this
+  2. Enable `Simplified User Model` in your Xbox One & Series X/S game options in the GameMaker IDE
+  3. Import the Sus .yymps
+  4. Call `SusSetPauseCallback()` on boot
+  5. Set the Input config macro `INPUT_XBOX_SIMPLIFIED_USER_MODEL` to `true`
+  6. Test!
 
 Windows GDK (Xbox on Windows):
   1. Import YoYoGames' official Windows GDK extension:
@@ -71,10 +77,12 @@ Windows GDK (Xbox on Windows):
      Steam so you don't want to compile your game with GDK features for your Steam releases.
      Creating a configuration in the IDE will allow you to swap between Windows releases
   3. Enable `Auto Initialise` in the GDK extension's options
-  3. If you have any, remove existing calls to `gdk_init()`, `gdk_update()`, `gdk_quit()` from your
+  4. Make sure your game boots using the GDK extension before proceeding. You will need to refer to
+     documentation for this
+  5. If you have any, remove existing calls to `gdk_init()`, `gdk_update()`, `gdk_quit()` from your
      project. Sus will call these functions for you
-  4. Import the Sus .yymps
-  5. Test!
+  6. Import the Sus .yymps
+  7. Test!
 
 Other platforms:
   Sus does not have support for these platforms yet.

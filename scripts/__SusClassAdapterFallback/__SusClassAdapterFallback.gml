@@ -50,8 +50,6 @@ function __SusClassAdapterFallback() constructor
         
         if (os_is_paused())
         {
-            show_debug_message("os_is_paused()");
-            
             if (__SusCallbackCanPause())
             {
                 __SusCallbackPause();

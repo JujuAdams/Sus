@@ -4,5 +4,5 @@
 
 function __SusXboxGetUserGamertagExt(_user)
 {
-    return __SusXboxGetUserIsSignedInExt(_user)? xboxone_classic_gamertag_for_user(_user) : "";
+    return __SusXboxGetUserIsSignedInExt(_user)? xboxone_modern_gamertag_for_user(_user) : "";
 }
