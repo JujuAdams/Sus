@@ -20,8 +20,8 @@ function __SusSystem()
         
         __pauseCallback      = undefined;
         __canPauseCallback   = undefined;
-        __suspendingCallback = undefined;
-        __canSuspendCallback = undefined;
+        __xboxSuspendCallback = undefined;
+        __canXboxSuspendCallback = undefined;
         
         if (SUS_USING_STEAMWORKS)
         {

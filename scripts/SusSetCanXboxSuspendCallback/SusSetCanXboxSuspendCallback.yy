@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"SusSetCanSuspendCallback",
+  "%Name":"SusSetCanXboxSuspendCallback",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"SusSetCanSuspendCallback",
+  "name":"SusSetCanXboxSuspendCallback",
   "parent":{
     "name":"Callback Setup",
     "path":"folders/Sus/Functions/Callback Setup.yy",

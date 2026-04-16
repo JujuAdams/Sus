@@ -10,12 +10,12 @@ SusSetPauseCallback(function()
     //show_debug_message("Pause event");
 });
 
-SusSetCanSuspendCallback(function()
+SusSetCanXboxSuspendCallback(function()
 {
     return true;
 });
 
-SusSetSuspendingCallback(function()
+SusSetXboxSuspendingCallback(function()
 {
     //show_debug_message("Suspending event");
 });

@@ -5,6 +5,9 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
         __SusTrace("Using Xbox / GDK adapter");
     }
     
+    __suspending = false;
+    __suspendStartTime = infinity;
+    
     __findContollerID = -1;
     
     __user           = xboxone_get_activating_user(); //This will often be 0 on Windows
@@ -15,7 +18,10 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
     __avatar = SusBlankSprite;
     __UpdateAvatar();
     
-    __SusTrace($"On boot: user = {__user}, gamepad = {InputPlayerGetDevice()}");
+    if (SUS_VERBOSE)
+    {
+        __SusTrace($"On boot: user = {__user}, gamepad = {InputPlayerGetDevice()}");
+    }
     
     
     
@@ -141,7 +147,20 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
             
             if (xboxone_is_suspending())
             {
-                if (__SusCallbackCanSuspend())
+                if (not __suspending)
+                {
+                    if (SUS_VERBOSE)
+                    {
+                        __SusTrace("Application suspending");
+                    }
+                    
+                    __suspending = true;
+                    __suspendStartTime = current_time;
+                }
+                
+                __SusCallbackXboxSuspending();
+                
+                if (__SusCallbackCanXboxSuspend() || (current_time - __suspendStartTime > 800))
                 {
                     if (SUS_VERBOSE)
                     {
@@ -150,6 +169,15 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
                     
                     xboxone_suspend();
                 }
+            }
+            else
+            {
+                if (SUS_VERBOSE)
+                {
+                    __SusTrace("Application stopped suspending");
+                }
+                
+                __suspending = false;
             }
         }
     }

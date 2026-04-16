@@ -4,7 +4,7 @@
 
 #macro SUS_WARNINGS_HAVE_CALLSTACKS  true
 
-#macro SUS_STEAM_SCREENSHOT_FILENAME  "screenshot#.png"
+#macro SUS_STEAM_SCREENSHOT_FILENAME  "screenshot_#.png"
 
 #macro SUS_STEAM_AVATAR_SIZE  steam_user_avatar_size_medium
 
