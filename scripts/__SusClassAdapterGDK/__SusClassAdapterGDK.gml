@@ -156,8 +156,6 @@ function __SusClassAdapterGDK() : __SusClassAdapterFallback() constructor
     
     static __SystemAsync = function()
     {
-        __SusTrace($"system: {json_encode(async_load, true)}");
-        
         if (SUS_USING_WINDOWS_GDK)
         {
             if (async_load[? "event_type"] == "user signed in")
