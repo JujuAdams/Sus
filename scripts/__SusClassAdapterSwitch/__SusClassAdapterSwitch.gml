@@ -7,7 +7,19 @@ function __SusClassAdapterSwitch() : __SusClassAdapterFallback() constructor
     
     __SusConfigSwitch();
     
+    __accountIndex = switch_accounts_open_preselected_user();
     
+    
+    
+    static __GetName = function()
+    {
+        return switch_accounts_get_nickname(__accountIndex);
+    }
+    
+    static __GetUserID = function()
+    {
+        return __accountIndex;
+    }
     
     static __GamepadDisconnected = function()
     {
