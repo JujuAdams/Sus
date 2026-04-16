@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"SusSetGamepad",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"SusSetGamepad",
+  "parent":{
+    "name":"Gamepads",
+    "path":"folders/Sus/Functions/Gamepads.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

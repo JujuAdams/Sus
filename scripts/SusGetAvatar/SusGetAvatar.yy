@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"SusGetAvatar",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"SusGetAvatar",
+  "parent":{
+    "name":"Functions",
+    "path":"folders/Sus/Functions.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

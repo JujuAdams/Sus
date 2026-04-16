@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__SusConstants",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__SusConstants",
+  "parent":{
+    "name":"Sus",
+    "path":"folders/Sus.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

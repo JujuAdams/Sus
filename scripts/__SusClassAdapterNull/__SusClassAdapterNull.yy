@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__SusClassAdapterNull",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__SusClassAdapterNull",
+  "parent":{
+    "name":"Adapters",
+    "path":"folders/Sus/(System)/Adapters.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

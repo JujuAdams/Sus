@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__SusClassAdapterPS5",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__SusClassAdapterPS5",
+  "parent":{
+    "name":"Adapters",
+    "path":"folders/Sus/(System)/Adapters.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

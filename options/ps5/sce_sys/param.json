@@ -1,0 +1,123 @@
+{
+    "applicationCategoryType": 0,
+    "applicationDrmType": "standard",
+    "attribute": 0,
+    "attribute2": 0,
+    "attribute3": 4194308,
+	"attribute4": 1,
+    "contentId": "IV9999-CUSA99999_00-XXXXXXXXXXXXXXXX",
+    "contentVersion": "01.000.000",
+    "downloadDataSize": 0,
+    "gameIntent": {
+        "permittedIntents": [
+            {
+                "intentType": "joinSession"
+            },
+            {
+                "intentType": "launchActivity"
+            },
+            {
+                "intentType": "launchMultiplayerActivity"
+            }
+        ]
+    },
+    "localizedParameters": {
+        "ar-AE": {
+            "titleName": "Title Name"
+        },
+        "cs-CZ": {
+            "titleName": "Title Name"
+        },
+        "da-DK": {
+            "titleName": "Title Name"
+        },
+        "de-DE": {
+            "titleName": "Title Name"
+        },
+        "defaultLanguage": "en-US",
+        "el-GR": {
+            "titleName": "Title Name"
+        },
+        "en-GB": {
+            "titleName": "Title Name"
+        },
+        "en-US": {
+            "titleName": "Title Name"
+        },
+        "es-419": {
+            "titleName": "Title Name"
+        },
+        "es-ES": {
+            "titleName": "Title Name"
+        },
+        "fi-FI": {
+            "titleName": "Title Name"
+        },
+        "fr-CA": {
+            "titleName": "Title Name"
+        },
+        "fr-FR": {
+            "titleName": "Title Name"
+        },
+        "hu-HU": {
+            "titleName": "Title Name"
+        },
+        "id-ID": {
+            "titleName": "Title Name"
+        },
+        "it-IT": {
+            "titleName": "Title Name"
+        },
+        "ja-JP": {
+            "titleName": "Title Name"
+        },
+        "ko-KR": {
+            "titleName": "Title Name"
+        },
+        "nl-NL": {
+            "titleName": "Title Name"
+        },
+        "no-NO": {
+            "titleName": "Title Name"
+        },
+        "pl-PL": {
+            "titleName": "Title Name"
+        },
+        "pt-BR": {
+            "titleName": "Title Name"
+        },
+        "pt-PT": {
+            "titleName": "Title Name"
+        },
+        "ro-RO": {
+            "titleName": "Title Name"
+        },
+        "ru-RU": {
+            "titleName": "Title Name"
+        },
+        "sv-SE": {
+            "titleName": "Title Name"
+        },
+        "th-TH": {
+            "titleName": "Title Name"
+        },
+        "tr-TR": {
+            "titleName": "Title Name"
+        },
+        "vi-VN": {
+            "titleName": "Title Name"
+        },
+        "zh-Hans": {
+            "titleName": "Title Name"
+        },
+        "zh-Hant": {
+            "titleName": "Title Name"
+        }
+    },
+    "masterVersion": "01.00",
+    "titleId": "CUSA99999",
+    "userDefinedParam1": 0,
+    "userDefinedParam2": 0,
+    "userDefinedParam3": 0,
+    "userDefinedParam4": 0
+}

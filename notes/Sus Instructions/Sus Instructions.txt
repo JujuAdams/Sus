@@ -1,0 +1,78 @@
+Sus 0.0.0, 2026-04-16
+
+Sus is a user management library built to be easily deployed for strictly single-player games
+cross-platform. This library handles many platform quirks and porting problems for you. In my
+career as a porting engineer I have solved the same problems again and again; Sus is a simple tool
+that I find useful whilst doing my job.
+
+If your game has any multiplayer modes - including local multiplayer - then this library is not
+suitable. This library is also not guaranteed to be fully compliant and is not a magic spell that
+will get your game through compliance checks with zero effort on your behalf.
+
+Despite Sus doing a good job of providing a consistent API, each platform inevitably works slightly
+differently. Please follow the instructions below per platform to ensure that Sus has been imported
+correctly into your game.
+
+Steam:
+  1. Import YoYoGames' official Steamworks extension:
+       https://github.com/YoYoGames/GMEXT-Steamworks
+     You only need the `Steamworks` extension asset and the `Steamworks_Definitions` scripts (you
+     don't need the example assets)
+  2. Set the `Application ID` for your game. You can find this in the Steam backend
+  3. If you have any, remove existing calls to `steam_update()` from your project
+  4. Import the Sus .yymps
+  5. Test!
+
+  Protip:
+    If you want to test prior to paying to release on Steam, use `378090` which is a free game
+    called "Rebel Wings". You will need to obtain a copy of this game on Steam too:
+      https://store.steampowered.com/app/378090/Rebel_Wings/
+
+Switch:
+  1. Remove existing calls for the "controller support applet" (CSA) from your project
+  2. Set the following properties in your .nmeta:
+       - "Console account selection at startup" to `Required`
+       - "Console account selection at startup option" to `Not specified`
+       - "Restriction on switching user accounts" to `Enable`
+     Please refer to Nintendo's documentation for more information
+  3. Import the Sus .yymps
+  4. Open the `__SusConfigSwitch` script and customise it to your liking. Please refer to 
+     YoYoGames' documentation for more information
+  5. Do not call `switch_controller_support_show()` yourself. Please instead call the Sus function
+     `SusSwitchShowCSA()` to show the CSA
+  5. Call `SusSetPauseCallback()` on boot
+  6. Test!
+
+PlayStation 5:
+  1. Remove existing calls to `psn_init()` and `psn_tick()` from your project. Sus will call these
+     functions for you
+  2. Enable `InitialUserAlwaysLoggedIn` in your params.json. Please refer to Sony's documentation
+     for further information on how to do this
+  3. Import the Sus .yymps
+  4. If you are using Input (https://codeberg.org/offalynne/Input), set `INPUT_PS5_SINGLE_USER` to `true`
+  5. Call `SusSetPauseCallback()` on boot
+  6. Test!
+
+Xbox Series X/S:
+  1. Enable `Simplified User Model` in your Xbox One & Series X/S game options in the GameMaker IDE
+  2. Import the Sus .yymps
+  3. Call `SusSetPauseCallback()` on boot
+  4. If you are using Input (https://codeberg.org/offalynne/Input), set `INPUT_XBOX_SIMPLIFIED_USER_MODEL`
+     to `true`
+  4. Test!
+
+Windows GDK (Xbox on Windows):
+  1. Import YoYoGames' official Windows GDK extension:
+       https://github.com/YoYoGames/GMEXT-GDK
+     You only need the `GDKExtension` extension asset
+  2. Consider setting up a new configuration in the GameMaker IDE. You will likely be releasing on
+     Steam so you don't want to compile your game with GDK features for your Steam releases.
+     Creating a configuration in the IDE will allow you to swap between Windows releases
+  3. Enable `Auto Initialise` in the GDK extension's options
+  3. If you have any, remove existing calls to `gdk_init()`, `gdk_update()`, `gdk_quit()` from your
+     project. Sus will call these functions for you
+  4. Import the Sus .yymps
+  5. Test!
+
+Other platforms:
+  Sus does not have support for these platforms yet.

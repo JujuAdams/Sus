@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__SusSteamImageCreateSprite",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__SusSteamImageCreateSprite",
+  "parent":{
+    "name":"(System)",
+    "path":"folders/Sus/(System).yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

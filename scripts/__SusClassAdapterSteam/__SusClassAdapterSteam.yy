@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__SusClassAdapterSteam",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__SusClassAdapterSteam",
+  "parent":{
+    "name":"Adapters",
+    "path":"folders/Sus/(System)/Adapters.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

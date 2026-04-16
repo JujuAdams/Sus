@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__SusSoftError",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__SusSoftError",
+  "parent":{
+    "name":"(System)",
+    "path":"folders/Sus/(System).yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

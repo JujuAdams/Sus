@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"SusGetName",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"SusGetName",
+  "parent":{
+    "name":"Functions",
+    "path":"folders/Sus/Functions.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
