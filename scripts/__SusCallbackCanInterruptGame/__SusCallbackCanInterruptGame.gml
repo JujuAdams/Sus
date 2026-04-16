@@ -4,7 +4,7 @@ function __SusCallbackCanInterruptGame()
     
     if (is_callable(_system.__canInterruptGameCallback))
     {
-        return (_system.__canInterruptGameCallback() == true);
+        return _system.__canInterruptGameCallback() ?? true;
     }
     else
     {

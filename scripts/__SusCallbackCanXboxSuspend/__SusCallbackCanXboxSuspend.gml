@@ -4,6 +4,10 @@ function __SusCallbackCanXboxSuspend()
     
     if (is_callable(_system.__canXboxSuspendCallback))
     {
-        _system.__canXboxSuspendCallback();
+        return _system.__canXboxSuspendCallback() ?? false;
+    }
+    else
+    {
+        return false;
     }
 }
