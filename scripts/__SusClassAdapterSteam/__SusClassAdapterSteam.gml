@@ -30,8 +30,6 @@ function __SusClassAdapterSteam() : __SusClassAdapterFallback() constructor
         var _width  = _sizeArray[0];
         var _height = _sizeArray[1];
         
-        show_debug_message($"{_width} x {_height}");
-        
         var _bufferSize = 4*_width*_height;
         var _buffer = buffer_create(_bufferSize, buffer_fixed, 1);
         

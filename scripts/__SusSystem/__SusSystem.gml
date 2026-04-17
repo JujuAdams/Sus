@@ -41,6 +41,11 @@ function __SusSystem()
         }
         else
         {
+            if (SUS_VERBOSE)
+            {
+                __SusTrace("Using fallback adapter");
+            }
+            
             __adapter = new __SusClassAdapterFallback();
         }
         

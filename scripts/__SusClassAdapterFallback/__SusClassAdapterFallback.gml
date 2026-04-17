@@ -2,11 +2,6 @@ function __SusClassAdapterFallback() constructor
 {
     static _system = __SusSystem();
     
-    if (SUS_VERBOSE)
-    {
-        __SusTrace("Using fallback adapter");
-    }
-    
     
     
     static __GetName = function()
