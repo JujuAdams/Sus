@@ -19,11 +19,11 @@ function SusGetInvalidXboxState()
     {
         if (SUS_USING_WINDOWS_GDK)
         {
-            return ((__user == 0) && InputPlayerIsConnected());
+            return ((__user == 0) || (not InputPlayerIsConnected()));
         }
         else if (SUS_ON_XBOX_SERIES)
         {
-            return ((__user != __activatingUser) && InputPlayerIsConnected());
+            return ((__user != __activatingUser) || (__findContollerID >= 0) || (not InputPlayerIsConnected()));
         }
     }
     

@@ -1,5 +1,5 @@
 #macro SUS_VERSION  "1.0.0"
-#macro SUS_DATE     "2026-04-13"
+#macro SUS_DATE     "2026-04-17"
 
 #macro SUS_RUNNING_FROM_IDE  (GM_build_type == "run")
 

@@ -25,6 +25,11 @@ function __SusSystem()
         
         if (SUS_USING_STEAMWORKS)
         {
+            if (not steam_initialised())
+            {
+                __SusError("Steam has failed to initialize");
+            }
+            
             __adapter = new __SusClassAdapterSteam();
         }
         else if (SUS_ON_SWITCH)
