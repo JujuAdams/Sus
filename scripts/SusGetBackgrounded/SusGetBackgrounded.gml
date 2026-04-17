@@ -9,6 +9,9 @@
 /// Windows (Steam & GDK):
 ///   Returns `true` when the application is minimized.
 /// 
+/// MacOS:
+///   `os_is_paused()` is buggy on this platform. 
+/// 
 /// Switch:
 ///   Returns `true` when the application is brought back to the foreground after being
 ///   backgrounded.
@@ -30,7 +33,7 @@ function SusGetBackgrounded()
     static _oldState = undefined;
     
     var _newState = (os_is_paused() || (SUS_ON_XBOX_SERIES && xboxone_is_constrained()));
-    var _result = (_newState != _oldState);
+    var _result = (_newState && (not _oldState));
     _oldState = _newState;
     
     return _result;
