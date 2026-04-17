@@ -10,7 +10,8 @@
 ///   Returns `true` when the application is minimized.
 /// 
 /// MacOS:
-///   `os_is_paused()` is buggy on this platform. 
+///   Returns `true` when the application is brought back to the foreground after being
+///   backgrounded.
 /// 
 /// Switch:
 ///   Returns `true` when the application is brought back to the foreground after being
@@ -27,6 +28,9 @@
 /// Android:
 ///   Returns `true` when the application is brought back to the foreground after being
 ///   backgrounded.
+/// 
+/// iOS:
+///   Returns `true` when the application is backgrounded.
 
 function SusGetBackgrounded()
 {
