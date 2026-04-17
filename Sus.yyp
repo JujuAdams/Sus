@@ -12,6 +12,7 @@
   },
   "defaultScriptType":1,
   "Folders":[
+    {"$GMFolder":"","%Name":"Extensions","folderPath":"folders/Extensions.yy","name":"Extensions","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Input","folderPath":"folders/Input.yy","name":"Input","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"(System)","folderPath":"folders/Input/(System).yy","name":"(System)","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Callbacks","folderPath":"folders/Input/(System)/Callbacks.yy","name":"Callbacks","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -60,6 +61,8 @@
   },
   "name":"Sus",
   "resources":[
+    {"id":{"name":"GDKExtension","path":"extensions/GDKExtension/GDKExtension.yy",},},
+    {"id":{"name":"Steamworks","path":"extensions/Steamworks/Steamworks.yy",},},
     {"id":{"name":"fntConsolas","path":"fonts/fntConsolas/fntConsolas.yy",},},
     {"id":{"name":"Sus Introduction","path":"notes/Sus Introduction/Sus Introduction.yy",},},
     {"id":{"name":"Sus Platform Notes","path":"notes/Sus Platform Notes/Sus Platform Notes.yy",},},
@@ -280,6 +283,7 @@
     {"id":{"name":"InputXYNewest","path":"scripts/InputXYNewest/InputXYNewest.yy",},},
     {"id":{"name":"InputXYOldest","path":"scripts/InputXYOldest/InputXYOldest.yy",},},
     {"id":{"name":"InputY","path":"scripts/InputY/InputY.yy",},},
+    {"id":{"name":"Steamworks_Definitions","path":"scripts/Steamworks_Definitions/Steamworks_Definitions.yy",},},
     {"id":{"name":"SusGetAvatar","path":"scripts/SusGetAvatar/SusGetAvatar.yy",},},
     {"id":{"name":"SusGetBackgrounded","path":"scripts/SusGetBackgrounded/SusGetBackgrounded.yy",},},
     {"id":{"name":"SusGetInvalidXboxState","path":"scripts/SusGetInvalidXboxState/SusGetInvalidXboxState.yy",},},
