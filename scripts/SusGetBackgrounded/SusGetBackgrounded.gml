@@ -20,6 +20,10 @@
 /// Xbox Series X/S:
 ///   Returns `true` when either the OS opens user interface over the application, or the
 ///   application is minimized.
+/// 
+/// Android:
+///   Returns `true` when the application is brought back to the foreground after being
+///   backgrounded.
 
 function SusGetBackgrounded()
 {
