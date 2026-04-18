@@ -27,7 +27,7 @@ function __SusSystem()
         {
             if (not steam_initialised())
             {
-                __SusError("Steam has failed to initialize");
+                __SusError("Steam failed to initialize. Please check that Steam is running.");
             }
             
             __adapter = new __SusClassAdapterSteam();
