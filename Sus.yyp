@@ -57,7 +57,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.1400.4.1030",
+    "IDEVersion":"2024.1400.5.1052",
   },
   "name":"Sus",
   "resources":[
@@ -289,6 +289,7 @@
     {"id":{"name":"SusGetInvalidXboxState","path":"scripts/SusGetInvalidXboxState/SusGetInvalidXboxState.yy",},},
     {"id":{"name":"SusGetName","path":"scripts/SusGetName/SusGetName.yy",},},
     {"id":{"name":"SusGetUserID","path":"scripts/SusGetUserID/SusGetUserID.yy",},},
+    {"id":{"name":"SusPlayStationGetInitialGamepad","path":"scripts/SusPlayStationGetInitialGamepad/SusPlayStationGetInitialGamepad.yy",},},
     {"id":{"name":"SusSetCanInterruptGameCallback","path":"scripts/SusSetCanInterruptGameCallback/SusSetCanInterruptGameCallback.yy",},},
     {"id":{"name":"SusSetCanXboxSuspendCallback","path":"scripts/SusSetCanXboxSuspendCallback/SusSetCanXboxSuspendCallback.yy",},},
     {"id":{"name":"SusSetGamepadDisconnectedCallback","path":"scripts/SusSetGamepadDisconnectedCallback/SusSetGamepadDisconnectedCallback.yy",},},

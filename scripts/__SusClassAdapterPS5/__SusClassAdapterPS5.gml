@@ -5,6 +5,7 @@ function __SusClassAdapterPS5() : __SusClassAdapterFallback() constructor
         __SusTrace("Using PlayStation 5 adapter");
     }
     
+    psn_load_modules();
     __userID = psn_default_user();
     
     
@@ -22,6 +23,7 @@ function __SusClassAdapterPS5() : __SusClassAdapterFallback() constructor
     static __BeginStep = function()
     {
         psn_tick();
+        psn_tick_error_dialog();
         
         __BeginStepShared();
     }

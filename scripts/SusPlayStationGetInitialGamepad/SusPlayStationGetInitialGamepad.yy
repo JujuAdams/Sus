@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"SusPlayStationGetInitialGamepad",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"SusPlayStationGetInitialGamepad",
+  "parent":{
+    "name":"Functions",
+    "path":"folders/Sus/Functions.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

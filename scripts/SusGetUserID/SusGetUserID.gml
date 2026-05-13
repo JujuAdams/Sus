@@ -7,8 +7,9 @@
 ///   Returns `steam_get_user_account_id()`.
 /// 
 /// Switch:
-///   Returns `switch_accounts_open_preselected_user()`. You can then use this value with other
-///   Switch functions to return other user handles etc.
+///   Returns the value that `switch_accounts_open_preselected_user()` returned when the game
+///   started. You can then use this value with other Switch functions to return other user
+///   handles etc.
 /// 
 /// PlayStation 5:
 ///   Returns `psn_default_user()`.

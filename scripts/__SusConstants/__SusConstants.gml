@@ -1,5 +1,5 @@
-#macro SUS_VERSION  "1.0.0"
-#macro SUS_DATE     "2026-04-17"
+#macro SUS_VERSION  "0.0.2-alpha"
+#macro SUS_DATE     "2026-04-20"
 
 #macro SUS_RUNNING_FROM_IDE  (GM_build_type == "run")
 
@@ -12,6 +12,7 @@
 #macro SUS_ON_XBOX_SERIES  (os_type == os_xboxseriesxs)
 #macro SUS_ON_PS5          (os_type == os_ps5)
 #macro SUS_ON_SWITCH       (os_type == os_switch)
+#macro SUS_ON_CONSOLE      (SUS_ON_XBOX_SERIES || SUS_ON_PS5 || SUS_ON_SWITCH)
 
 #macro SUS_USING_STEAMWORKS     (SUS_ON_DESKTOP && extension_exists("Steamworks"))
 #macro SUS_USING_GAMECENTER     (SUS_ON_IOS && extension_exists("GameCenter"))
@@ -19,6 +20,15 @@
 #macro SUS_USING_GDK            (SUS_ON_XBOX_SERIES || SUS_USING_WINDOWS_GDK)
 #macro SUS_USING_WINDOWS_GDK    (SUS_ON_WINDOWS && extension_exists("GDKExtension"))
 
+/// Steam:
+///   SUS_AVATAR_SMALL  = steam_user_avatar_size_small  =  32 x  32
+///   SUS_AVATAR_MEDIUM = steam_user_avatar_size_medium =  64 x  64
+///   SUS_AVATAR_LARGE  = steam_user_avatar_size_large  = 184 x 184
+/// 
+/// Xbox & Windows GDK:
+///   SUS_AVATAR_SMALL  = xboxone_gamerpic_small  =  64 x  64
+///   SUS_AVATAR_MEDIUM = xboxone_gamerpic_medium = 208 x 208
+///   SUS_AVATAR_LARGE  = xboxone_gamerpic_large  = 424 x 424
 #macro SUS_AVATAR_SMALL   0
 #macro SUS_AVATAR_MEDIUM  1
 #macro SUS_AVATAR_LARGE   2
